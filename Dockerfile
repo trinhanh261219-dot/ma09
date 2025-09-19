@@ -1,11 +1,12 @@
-# Sử dụng Tomcat ổn định + JDK 17
-FROM tomcat:10.1-jdk21
+# Sử dụng Tomcat ổn định với JDK 17 (phù hợp hơn NetBeans build)
+FROM tomcat:10.1-jdk17
 
 # Xóa webapp mặc định
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy file WAR vào Tomcat (chỉnh lại đúng đường dẫn)
-COPY dist/ch09cart.war /usr/local/tomcat/webapps/ROOT.war
+# Copy file WAR đã build từ NetBeans vào Tomcat
+
+COPY dist/cart09.war /usr/local/tomcat/webapps/ROOT.war
 
 # Expose port 8080 (Render sẽ map vào $PORT)
 EXPOSE 8080
